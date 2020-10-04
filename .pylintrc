@@ -1,0 +1,10 @@
+[MASTER]
+extension-pkg-whitelist=cv2
+disable=missing-docstring
+
+[BASIC]
+good-names=fp
+
+[FORMAT]
+max-line-length=160
+
