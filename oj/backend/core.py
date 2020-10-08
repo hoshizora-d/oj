@@ -19,6 +19,12 @@ class Problem:
         for (args, kwargs), ret in zip(input_gen, output_gen):
             yield args, kwargs, ret
 
+    def get_example(self, case: int = 0):
+        it = self.generate_cases()
+        for _ in range(case):
+            next(it)
+        return next(it)
+
     def solve(self, *args, **kwargs):
         raise NotImplementedError
 
