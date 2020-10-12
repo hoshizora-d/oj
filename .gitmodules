@@ -1,3 +1,7 @@
 [submodule "solutions"]
 	path = solutions
 	url = https://github.com/hoshizora-d/oj-solutions.git
+	
+[submodule "cv"]
+	path = cv
+	url = https://github.com/hoshizora-d/cv.git

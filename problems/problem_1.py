@@ -20,8 +20,8 @@ class FillCircle:
             return result
 
         example_args = [
-            (np.zeros((4, 4), np.uint8), (2, 2), 2),
-            (np.zeros((4, 3), np.uint8), (2, 2), 2),
+            (np.zeros((5, 5), np.uint8), (2, 2), 2),
+            (np.zeros((3, 3), np.uint8), (2, 2), 2),
             (np.zeros((999, 999), np.uint8), (499, 499), 500),
             (np.zeros((999, 999), np.uint8), (499, 499), 5),
         ]
