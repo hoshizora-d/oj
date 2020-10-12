@@ -3,7 +3,7 @@ extension-pkg-whitelist=cv2
 disable=missing-docstring
 
 [BASIC]
-good-names=fp,it
+good-names=fp,it,h,w
 
 [FORMAT]
 max-line-length=160

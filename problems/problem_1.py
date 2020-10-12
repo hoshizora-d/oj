@@ -15,9 +15,12 @@ class FillCircle:
     @special_data_generator
     def generate_cases(self) -> Tuple[List, Dict, Any]:
         def solution(img, o, r):
-            result = img.copy()
-            cv2.circle(result, o, r, 255, -1)
-            return result
+            scaling = 16
+            h, w = img.shape
+            expected = np.zeros((h*scaling, w*scaling), np.uint8)
+            cv2.circle(expected, tuple(map(int, [(o[0]+0.5)*scaling-0.5, (o[1]+0.5)*scaling-0.5])), int(r*scaling), 255, -1)
+            expected = cv2.resize(expected, None, fx=1/scaling, fy=1/scaling)
+            return expected
 
         example_args = [
             (np.zeros((5, 5), np.uint8), (2, 2), 2),
@@ -30,5 +33,7 @@ class FillCircle:
 
     @special_judge
     def judge(self, expected: np.ndarray, answer: np.ndarray):
-        np.testing.assert_array_equal(expected, answer)
-        return True
+        kernel = np.ones((3, 3), np.uint8)
+        diff = abs(expected.astype(int)-answer.astype(int))
+        filtered = cv2.morphologyEx(diff.astype(np.uint8), cv2.MORPH_OPEN, kernel)
+        return not filtered.any() and (diff < 255).all()
