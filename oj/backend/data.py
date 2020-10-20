@@ -6,6 +6,7 @@ from typing import Tuple, List, Dict
 
 class FileDataGenerator:
     """Generate data of a problem.
+    
     Notice:
         The files follows the rule: [root]/[index][ext]
     """
