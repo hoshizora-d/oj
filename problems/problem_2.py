@@ -30,6 +30,7 @@ class FillCircleAA:
             (np.zeros((3, 3), np.uint8), (2, 2), 2),
             (np.zeros((999, 999), np.uint8), (499, 499), 500),
             (np.zeros((999, 999), np.uint8), (499, 499), 5),
+            (np.zeros((999, 999), np.uint8), (499.2, 499.8), 499),
         ]
         for args in example_args:
             yield args, {}, solution(*args)
