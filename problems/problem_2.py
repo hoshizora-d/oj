@@ -7,7 +7,7 @@ from oj import problem, special_judge, special_data_generator
 @problem
 class FillCircleAA:
     """Fill a circle([center],[radius]) with color 255 for the input grayscale [image].
-    
+
     Notice:
         Edge should be processed with anti-aliasing.
     """
