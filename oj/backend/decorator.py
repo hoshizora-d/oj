@@ -31,22 +31,28 @@ def special_data_generator(func):
     return _data_generator_wrapper
 
 
-def problem(cls):
+class problem:  # pylint: disable=invalid-name
     """Append test feature
 
     Notice:
         Configure data path with [oj.ini]-[data]-[root]
     """
-    # pylint: disable=W0223
-    class ProblemWrapper(cls, Problem):
-        __test__ = True
-        __data__ = CONFIG["data"]["root"]
-        __title__ = cls.__name__
 
-    for _, func in inspect.getmembers(cls, predicate=inspect.isfunction):
-        if func.__name__ == "_judge_wrapper":
-            ProblemWrapper.judge = func
-        elif func.__name__ == "_data_generator_wrapper":
-            ProblemWrapper.generate_cases = func
+    def __init__(self, time_limit_ms=1000):
+        self.time_limit = time_limit_ms
 
-    return ProblemWrapper
+    def __call__(self, cls):
+        # pylint: disable=W0223
+        class ProblemWrapper(cls, Problem):
+            __test__ = True
+            __data__ = CONFIG["data"]["root"]
+            __title__ = cls.__name__
+            __time_limit__ = self.time_limit
+
+        for _, func in inspect.getmembers(cls, predicate=inspect.isfunction):
+            if func.__name__ == "_judge_wrapper":
+                ProblemWrapper.judge = func
+            elif func.__name__ == "_data_generator_wrapper":
+                ProblemWrapper.generate_cases = func
+
+        return ProblemWrapper
